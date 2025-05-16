@@ -1,0 +1,16 @@
+pandas
+openpyxl
+sentence-transformers
+# Install CPU-only version of torch, torchvision, torchaudio
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
+torchaudio
+accelerate
+
+faiss-cpu
+langchain-huggingface
+langchain-community
+
+bitsandbytes
+streamlit
