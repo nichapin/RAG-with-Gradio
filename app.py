@@ -1,4 +1,4 @@
-import streamlit as st
+import gradio as gr
 from src.data_transformation import DataTransformation
 from src.embedding_vector_store import DataEmbedding
 from src.config_model import ModelConfig
@@ -7,27 +7,16 @@ from langchain.schema.runnable import RunnableLambda
 import re
 
 
-
-# Set up page config
-st.set_page_config(page_title="RAG Chatbot", layout="centered")
-st.title("🔍 RAG Chatbot")
-st.markdown("Ask me anything based on the knowledge base!")
-
-@st.cache_resource
 def load_components():
-    # Data ingestion and transformation
     transformer = DataTransformation()
     clean_competencies_df, role_df = transformer.transforamtion_data()
 
-    # Embedding and vector store
     embedding_vector = DataEmbedding()
     db = embedding_vector.embedding_vector_store(clean_competencies_df, role_df)
 
-    # Model and tokenizer
     model_config = ModelConfig()
     model, tokenizer = model_config.pretrained_model_config()
 
-    # Prompt and chain
     builder = PromptTemplateBuilder()
     llm_chain = builder.build_prompt_template(model, tokenizer)
 
@@ -35,7 +24,6 @@ def load_components():
 
     def get_context_and_summary(question):
         docs = retriever.get_relevant_documents(question)
-
         if not docs:
             return {
                 "context": "No relevant documents.",
@@ -55,26 +43,33 @@ def load_components():
         }
 
     rag_chain = RunnableLambda(get_context_and_summary) | llm_chain
-
     return rag_chain
 
-# Load the chain only once
+
 rag_chain = load_components()
 
-output = rag_chain.invoke("I want to learn about data")
-raw_text = output["text"]
-clean_text = re.sub(r"QUESTION:.*?\n+", "", raw_text).strip()
-answer = clean_text.split('[/INST]')[-1].strip()
-print(answer)
+def chat_with_rag(message, history):
+    result = rag_chain.invoke(message)
 
-# Input box for the user
-user_question = st.text_input("📩 Enter your question:")
-
-if user_question:
-    with st.spinner("Generating answer..."):
-        output = rag_chain.invoke(user_question)
-        raw_text = output["text"]
+    try:
+        raw_text = result["text"]
         clean_text = re.sub(r"QUESTION:.*?\n+", "", raw_text).strip()
         answer = clean_text.split('[/INST]')[-1].strip()
-        st.success("✅ Answer")
-        st.markdown(answer)
+
+        context = result.get("summary", "")
+        text_ans = f"{answer}\n\n📘 *Competency Suggestions:* \n{context}"
+        return text_ans
+    except Exception as e:
+        return f"⚠️ Error: {e}"
+
+# Build a chat interface (with memory)
+chat_ui = gr.ChatInterface(
+    fn=chat_with_rag,
+    title="🔍 RAG Chatbot",
+    description="Ask me anything based on the competency knowledge base!",
+    theme="default"
+)
+
+# Launch it
+chat_ui.launch()
+
