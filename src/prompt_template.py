@@ -23,8 +23,6 @@ class PromptTemplateBuilder:
                             If there are no relevant documents or the context does not match the user's question, respond with:
                             "Sorry, there are no related courses in the system. Do you have any other interests?"
 
-                            Otherwise, based on the competency documents below, answer the question and show the competency description.
-
                             {context}
 
                             ### QUESTION:
