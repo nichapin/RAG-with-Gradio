@@ -16,7 +16,7 @@ from huggingface_hub import login
 class ModelConfig:
     def __init__(self):
         self.model_name = "mistralai/Mistral-7B-Instruct-v0.1"
-        self.get_token = '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'
+        self.get_token = 'HUGGINGFACE_TOKEN'
 
     def pretrained_model_config(self):
         # HuggingFace login
