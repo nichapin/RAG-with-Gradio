@@ -35,7 +35,7 @@ class DataTransformationConfig:
 class DataTransformation:
     def __init__(self):
         self.data_transformation_config=DataTransformationConfig()
-        self.data_path = "/Users/thunpitchasattabun/Documents/conicle/openai_result.xlsx"
+        self.data_path = "EXCEL_PATH"
     def transforamtion_data(self) -> tuple[pd.DataFrame, pd.DataFrame]:
         competencies_df,role_df = read_excel_data(self.data_path)
         
