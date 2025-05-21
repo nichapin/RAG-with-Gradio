@@ -5,12 +5,12 @@ A simple **Retrieval-Augmented Generation (RAG)** chatbot powered by Hugging Fac
 
 ## Features
 
-- ✅ Embeds and retrieves relevant competency documents
-- ✅ Uses a custom prompt template to interact with a language model
-- ✅ Provides context-aware answers with cited source summaries
-- ✅ Built with `Gradio` for a user-friendly chat interface
+- Embeds and retrieves relevant competency documents
+- Uses a custom prompt template to interact with a language model
+- Provides context-aware answers with cited source summaries
+- Built with `Gradio` for a user-friendly chat interface
 
----
+
 
 ## Project Structure
 ```bash
@@ -45,7 +45,6 @@ ML-project/
    Users ask questions → app retrieves documents → LLM generates answers → chat displays them with context.
 
 
-
 ## Running the App
 
 ### 1. Install dependencies
@@ -60,9 +59,7 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
-**Notes**
+**Notes/n** 
 The src/ modules must return the expected objects (e.g., LangChain retrievers, LLM chains).
-
 You can extend this app to handle cold-start users or multiple role recommendations.
-
 For deployment, consider Gradio sharing links, Hugging Face Spaces, or Docker.
