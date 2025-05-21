@@ -59,7 +59,7 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
-**Notes/n** 
+**Notes** <br /> 
 The src/ modules must return the expected objects (e.g., LangChain retrievers, LLM chains).
 You can extend this app to handle cold-start users or multiple role recommendations.
 For deployment, consider Gradio sharing links, Hugging Face Spaces, or Docker.
