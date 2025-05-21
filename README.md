@@ -1,10 +1,9 @@
-# 🔍 Competency-Based RAG Chatbot
+# Competency-Based RAG Chatbot
 
 A simple **Retrieval-Augmented Generation (RAG)** chatbot powered by Hugging Face Transformers and LangChain. This chatbot answers questions using a competency knowledge base — useful for HR systems, employee upskilling platforms, or internal career recommendation tools.
 
----
 
-## 🚀 Features
+## Features
 
 - ✅ Embeds and retrieves relevant competency documents
 - ✅ Uses a custom prompt template to interact with a language model
@@ -13,7 +12,8 @@ A simple **Retrieval-Augmented Generation (RAG)** chatbot powered by Hugging Fac
 
 ---
 
-## 📂 Project Structure
+## Project Structure
+```bash
 ML-project/
 │
 ├── src/
@@ -25,11 +25,9 @@ ML-project/
 ├── app.py # Main Gradio app file
 ├── requirements.txt
 └── README.md
+```
 
-
----
-
-## 🧑‍💻 How It Works
+## How It Works
 
 1. **Data Loading and Transformation**  
    Loads and cleans competency and role data.
@@ -46,9 +44,9 @@ ML-project/
 4. **User Interaction (via Gradio)**  
    Users ask questions → app retrieves documents → LLM generates answers → chat displays them with context.
 
----
 
-## ▶️ Running the App
+
+## Running the App
 
 ### 1. Install dependencies
 
@@ -56,11 +54,12 @@ Make sure you're in a virtual environment (`venv` or `conda`), then run:
 
 ```bash
 pip install -r requirements.txt
+```
 
 ### 2. Launch the Gradio App
 ```bash
 python app.py
-
+```
 **Notes**
 The src/ modules must return the expected objects (e.g., LangChain retrievers, LLM chains).
 
