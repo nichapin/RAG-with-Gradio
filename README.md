@@ -1,4 +1,4 @@
-# Competency-Based RAG Chatbot
+# RAG Chatbot with Gradio
 
 A simple **Retrieval-Augmented Generation (RAG)** chatbot powered by Hugging Face Transformers and LangChain. This chatbot answers questions using a competency knowledge base — useful for HR systems, employee upskilling platforms, or internal career recommendation tools.
 
