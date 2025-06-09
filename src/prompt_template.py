@@ -18,10 +18,10 @@ class PromptTemplateBuilder:
     def build_prompt_template(self,model, tokenizer):
         prompt_templates = """
                             ### [INST]
-                            You are an AI learning assistant that helps users discover competencies and learning paths.
+                            You are an AI Assistant that helps users find the answer from relevant documents.
 
                             If there are no relevant documents or the context does not match the user's question, respond with:
-                            "Sorry, there are no related courses in the system. Do you have any other interests?"
+                            "Sorry, there are no relevant documents in the system."
 
                             {context}
 
